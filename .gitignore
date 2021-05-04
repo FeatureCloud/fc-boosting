@@ -1,0 +1,4 @@
+.idea/
+venv/
+debug.log
+__pycache__

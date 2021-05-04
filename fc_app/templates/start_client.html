@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Federated Boosting App</title>
+</head>
+<style>
+    table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 5px;
+      text-align: left;    
+    }
+    </style>
+    </head>
+    <body>
+    
+    <h2>Federated Boosting App</h2>
+    <p>Boosting algorithm: AdaBoost (Adaptive Boosting)</p>
+    
+    <table style="width:100%">
+      <tr>
+        <th>Accuracy of the local model:</th>
+        <td>{{ score1 }}</td>
+      </tr>
+      <tr>
+        <th>Accuracy of the combined model:</th>
+        <td>{{ score2 }}</td>
+      </tr>
+      <tr>
+        <th>Predictions of the combined model for the test data:</th>
+        <td>{{ pred }}</td>
+      </tr>
+    
+    </table>
+    
+    </body>
+</html>
