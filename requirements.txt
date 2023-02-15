@@ -6,7 +6,7 @@ MarkupSafe==1.1.1
 numpy
 redis==3.3.8
 rq==1.1.0
-Werkzeug==0.15.5
+Werkzeug==2.2.3
 scikit-learn
 pandas
 jsonpickle
