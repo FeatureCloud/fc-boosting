@@ -4,7 +4,7 @@ itsdangerous==1.1.0
 Jinja2==2.10.1
 MarkupSafe==1.1.1
 numpy
-redis==3.3.8
+redis==4.5.3
 rq==1.1.0
 Werkzeug==0.15.5
 scikit-learn
