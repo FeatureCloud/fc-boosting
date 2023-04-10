@@ -1,13 +1,7 @@
-Click==7.0
-Flask==1.1.1
-itsdangerous==1.1.0
-Jinja2==2.10.1
-MarkupSafe==1.1.1
-numpy
-redis==3.3.8
-rq==1.1.0
-Werkzeug==0.15.5
+featurecloud
+bottle # webserver
 scikit-learn
 pandas
 jsonpickle
-pyyaml==5.3.1
+pyyaml
+numpy

@@ -1,16 +1,16 @@
-FROM python:3.8
+FROM python:3.8-slim
 
-RUN apt-get update
-RUN apt-get install -y redis-server supervisor nginx
-
-RUN pip3 install gunicorn
+RUN apt-get update -y
+RUN apt-get upgrade -y
+RUN apt-get install -y supervisor nginx
+RUN pip3 install --upgrade pip
 
 COPY requirements.txt /requirements.txt
 RUN pip3 install -r ./requirements.txt
 
-COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-COPY nginx/default /etc/nginx/sites-available/default
-COPY docker-entrypoint.sh /entrypoint.sh
+COPY server_config/supervisord.conf /supervisord.conf
+COPY server_config/nginx /etc/nginx/sites-available/default
+COPY server_config/docker-entrypoint.sh /entrypoint.sh
 
 COPY . /app
 

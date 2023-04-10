@@ -6,7 +6,6 @@ from sklearn.ensemble import AdaBoostClassifier
 from sklearn.metrics import accuracy_score, matthews_corrcoef, roc_auc_score
 from sklearn.model_selection import train_test_split
 from sklearn.utils import Bunch
-from redis_util import redis_set, redis_get
 
 
 def set_X_y(df, label_col=None, return_X_y=False):
@@ -47,22 +46,23 @@ def set_X_y(df, label_col=None, return_X_y=False):
     return Bunch(data=X, target=y)
 
 
-def build_model(x_train, x_test, y_train, y_test):
-    lr = float(redis_get("learning_rate"))
-    if redis_get("random_state"):
-        random_state = redis_get("random_state")
+def build_model(x_train, x_test, y_train, y_test, self):
+    lr = float(self.load("learning_rate"))
+    if self.load("random_state"):
+        random_state = self.load("random_state")
     else:
         random_state = None
     # Create adaboost object
-    obj = AdaBoostClassifier(n_estimators=redis_get("n_estimators"), learning_rate=lr, random_state=random_state)
+    obj = AdaBoostClassifier(n_estimators=self.load("n_estimators"), learning_rate=lr, random_state=random_state)
     # Train Adaboost 
     model = obj.fit(x_train, y_train)
     y_pred = model.predict(x_test)
-    if "acc" in redis_get("metric"):
+    
+    if "acc" in self.load("metric"):
         score = accuracy_score(y_test, y_pred)
-    elif "matth" in redis_get("metric"):
+    elif "matth" in self.load("metric"):
         score = matthews_corrcoef(y_test, y_pred)
-    elif "roc" in redis_get("metric") or "auc" in redic_get("metric"):
+    elif "roc" in self.load("metric") or "auc" in self.load("metric"):
         score = roc_auc_score(y_test, y_pred)
     else:
         score = accuracy_score(y_test, y_pred)
